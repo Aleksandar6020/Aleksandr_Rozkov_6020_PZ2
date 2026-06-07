@@ -1,4 +1,4 @@
 package com.example.aleksandr_rozkov_6020_pz2.repository;
 
-public class UserRepository {
+public interface UserRepository {
 }
