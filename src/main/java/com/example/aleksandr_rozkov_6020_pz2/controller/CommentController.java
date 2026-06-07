@@ -3,5 +3,5 @@ package com.example.aleksandr_rozkov_6020_pz2.controller;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class AdminController {
+public class CommentController {
 }
