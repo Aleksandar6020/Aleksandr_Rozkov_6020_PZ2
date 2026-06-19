@@ -10,15 +10,17 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Suggestion {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private Long userId;
     private Long manulId;
     private String type;
+
+    @Column(columnDefinition = "TEXT")
     private String content;
+
     private String status;
     private String createdAt;
-
 }

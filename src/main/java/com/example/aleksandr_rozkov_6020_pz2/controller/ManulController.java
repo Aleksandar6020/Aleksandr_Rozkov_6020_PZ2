@@ -1,15 +1,16 @@
 package com.example.aleksandr_rozkov_6020_pz2.controller;
 
+import com.example.aleksandr_rozkov_6020_pz2.dto.ManulRequest;
 import com.example.aleksandr_rozkov_6020_pz2.entity.Manul;
 import com.example.aleksandr_rozkov_6020_pz2.service.ManulService;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/manuls")
 public class ManulController {
-
     private final ManulService manulService;
 
     public ManulController(ManulService manulService) {
@@ -17,23 +18,26 @@ public class ManulController {
     }
 
     @GetMapping
-    public List<Manul> getAllManuls() {
-        return manulService.getAllManuls();
+    public Object getAllManuls(@RequestParam(required = false, defaultValue = "createdAt") String sortBy,
+                               @RequestParam(required = false, defaultValue = "desc") String order,
+                               @RequestParam(required = false) Integer page,
+                               @RequestParam(required = false) Integer limit) {
+        return manulService.getAllManuls(sortBy, order, page, limit);
     }
 
     @GetMapping("/{id}")
-    public Manul getManulById(@PathVariable Long id) {
-        return manulService.getManulById(id);
+    public Map<String, Object> getManulById(@PathVariable Long id, Authentication authentication) {
+        return manulService.getManulById(id, authentication);
     }
 
     @PostMapping
-    public Manul createManul(@RequestBody Manul manul) {
-        return manulService.createManul(manul);
+    public Manul createManul(@RequestBody ManulRequest request) {
+        return manulService.createManul(request);
     }
 
-    @PutMapping("/{id}")
-    public Manul updateManul(@PathVariable Long id, @RequestBody Manul manul) {
-        return manulService.updateManul(id, manul);
+    @PatchMapping("/{id}")
+    public Manul updateManul(@PathVariable Long id, @RequestBody ManulRequest request) {
+        return manulService.updateManul(id, request);
     }
 
     @DeleteMapping("/{id}")

@@ -10,13 +10,18 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Comment {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long userId;
-    private Long manulId;
-    private String content;
-    private String createdAt;
 
+    @Column(nullable = false)
+    private Long userId;
+
+    @Column(nullable = false)
+    private Long manulId;
+
+    @Column(columnDefinition = "TEXT", nullable = false)
+    private String content;
+
+    private String createdAt;
 }

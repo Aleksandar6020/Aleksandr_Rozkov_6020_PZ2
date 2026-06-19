@@ -1,7 +1,0 @@
-package com.example.aleksandr_rozkov_6020_pz2.service;
-
-import org.springframework.stereotype.Service;
-
-@Service
-public class UserService {
-}
